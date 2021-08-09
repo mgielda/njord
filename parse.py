@@ -41,3 +41,5 @@ with open('assignments.csv') as csvfile:
         df.loc[df['description'].str.contains(row[0]), 'category'] = row[2]
 
 print(df[0:10])
+
+print(df.groupby(['category'])['amount'].sum())
