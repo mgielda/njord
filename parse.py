@@ -7,14 +7,15 @@ import glob
 import yaml
 import csv
 
-def get_history():
-    data_filenames = glob.glob('./history/*.csv')
-    return pd.concat([pd.read_csv(dfn) for dfn in data_filenames])
-
 def get_bank_config(bank='pko'):
     # TODO: allow changing the default bank
     with open(f'bank_configs/{bank}.yml') as bank_config_file:
         return yaml.safe_load(bank_config_file)
+
+def get_history(encoding):
+    data_filenames = glob.glob('./history/*.csv')
+    return pd.concat([pd.read_csv(dfn, encoding=encoding) for dfn in data_filenames])
+
 
 def parse_history(df, bank_config):
     field_names = bank_config['field_names']
@@ -41,15 +42,11 @@ def apply_names_and_categories(df):
     return df
 
 def main():
-    df = get_history()
-    pd.set_option('max_columns', None)
-    pd.set_option('max_rows', 100)
-    print(df[0:10])
     bank_config = get_bank_config()
+    df = get_history(bank_config.get('encoding', 'utf-8'))
     df = parse_history(df, bank_config)
     df = apply_names_and_categories(df)
-
-    print(df.groupby(['category'])['amount'].sum())
+    return df
 
 if __name__ == "__main__":
     main()
