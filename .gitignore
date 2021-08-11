@@ -1,3 +1,4 @@
 bank_configs/
 history/
 assignments.csv
+Pipfile.lock

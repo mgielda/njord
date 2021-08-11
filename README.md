@@ -12,3 +12,15 @@ All data (bank configuration, categorization data) is read from files:
 * `assignments.csv` - put categorization assignments here as string-filter,friendly-name,category
 
 Filters are relaxed, with (future) warnings on things that fall under more than one category.
+
+## Install
+
+```
+pipenv install
+```
+
+## Run
+
+```
+./run.sh
+```

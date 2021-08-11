@@ -1,0 +1,13 @@
+[[source]]
+url = "https://github.com/mgielda/njord"
+verify_ssl = true
+name = "github"
+
+[requires]
+python_version = "3.9"
+
+[dev-packages]
+
+[packages]
+jupyter = "*"
+jupytext = "*"
