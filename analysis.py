@@ -25,13 +25,10 @@ csv_string = """
 df = apply_names_and_categories(df, csv_string)
 
 print(df.groupby(['category'])['amount'].sum())
-len(df[(df['category'] == '')])
+len(df[df['category'] == ''])
 
-# +
 pd.set_option('display.width', 5500)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_colwidth', None)
-
-df[(df['category'] == '')].head(500)
-# -
+df[df['category'] == ''].head(500)
