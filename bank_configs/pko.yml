@@ -2,5 +2,6 @@ field_names:
   date: Data operacji
   amount: Kwota
   description: Opis transakcji
+  type: Typ transakcji
 unnamed_are_desc: True
 encoding: ISO 8859-2

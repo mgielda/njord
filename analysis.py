@@ -24,6 +24,8 @@ csv_string = """
 """
 df = apply_names_and_categories(df, csv_string)
 
+# filter out positive transfers
+df = df[df['amount'] < 0]
 print(df.groupby(['category'])['amount'].sum())
 len(df[df['category'] == ''])
 
