@@ -29,23 +29,25 @@ def parse_history(df, bank_config):
         for column in df.filter(regex="Unname"):
             df['description'] += " " + df[column]
 
-    return df
-
-def apply_names_and_categories(df):
     df['category'] = ''
     df['name'] = ''
-    with open('assignments.csv') as csvfile:
-        reader = csv.reader(csvfile, delimiter=',')
-        for row in reader:
-            df.loc[df['description'].str.contains(row[0]), 'name'] = row[1]
-            df.loc[df['description'].str.contains(row[0]), 'category'] = row[2]
+    return df
+
+def apply_names_and_categories(df, csv_string):
+    lines = csv_string.splitlines()
+    reader = csv.reader(lines, delimiter=',')
+    for row in reader:
+        if len(row) == 0: continue
+        df.loc[df['description'].str.contains(row[0], case=False), 'name'] = row[1]
+        df.loc[df['description'].str.contains(row[0], case=False), 'category'] = row[2]
     return df
 
 def main():
     bank_config = get_bank_config()
     df = get_history(bank_config.get('encoding', 'utf-8'))
     df = parse_history(df, bank_config)
-    df = apply_names_and_categories(df)
+    with open('assignments.csv') as csvfile:
+        df = apply_names_and_categories(df, csvfile.read())
     return df
 
 if __name__ == "__main__":
