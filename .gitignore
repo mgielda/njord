@@ -1,3 +1,5 @@
 history/
 assignments.csv
 Pipfile.lock
+analysis.py
+.ipynb_checkpoints/

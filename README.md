@@ -22,5 +22,5 @@ pipenv install
 ## Run
 
 ```
-pipenv run ./parse.py
+./run.sh
 ```
