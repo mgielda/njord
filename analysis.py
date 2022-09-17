@@ -15,8 +15,8 @@ from parse import *
 
 df = main()
 
-pd.set_option('max_columns', None)
-pd.set_option('max_rows', 100)
+pd.options.display.max_columns = None
+pd.options.display.max_rows = 100
 print(df[0:10])
 
 csv_string = """
@@ -29,8 +29,7 @@ df = df[df['amount'] < 0]
 print(df.groupby(['category'])['amount'].sum())
 len(df[df['category'] == ''])
 
-pd.set_option('display.width', 5500)
-pd.set_option('display.max_columns', None)
-pd.set_option('display.max_rows', 500)
-pd.set_option('display.max_colwidth', None)
+pd.options.display.width = 5500
+pd.options.display.max_rows = 500
+pd.options.display.max_colwidth = None
 df[df['category'] == ''].head(500)
