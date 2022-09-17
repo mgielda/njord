@@ -17,7 +17,7 @@ df = main()
 
 pd.options.display.max_columns = None
 pd.options.display.max_rows = 100
-print(df[0:10])
+df[0:10]
 
 csv_string = """
 
